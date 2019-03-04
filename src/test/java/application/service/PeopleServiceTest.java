@@ -12,10 +12,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import application.Messages;
 import application.domain.Person;
@@ -23,14 +25,23 @@ import application.repository.PeopleRepository;
 import application.service.exception.PersonNotFoundException;
 import application.service.implementation.PeopleServiceImpl;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 public class PeopleServiceTest {
 
-	@Mock
+	@TestConfiguration
+	static class PeopleServiceTestConfig {
+
+		@Bean
+		public PeopleService peopleService() {
+			return new PeopleServiceImpl();
+		}
+	}
+
+	@MockBean
 	private PeopleRepository repository;
 
-	@InjectMocks
-	private final PeopleService service = new PeopleServiceImpl();
+	@Autowired
+	private PeopleService service;
 
 	@Rule
 	public ExpectedException expectedEx = ExpectedException.none();

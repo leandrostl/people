@@ -35,7 +35,11 @@ public class PeopleServiceImpl implements PeopleService {
 
 	@Override
 	public void removePerson(final Long id) {
-		repository.deleteById(id);
+		try {
+			repository.deleteById(id);
+		} catch (final Exception e) {
+			throw new PersonNotFoundException(Messages.getString("error_not_found", id));
+		}
 	}
 
 }
