@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import application.Messages;
 import application.domain.Person;
 import application.repository.PeopleRepository;
 import application.service.PeopleService;
+import application.service.exception.PersonNotFoundException;
 
 @Service
 public class PeopleServiceImpl implements PeopleService {
@@ -22,7 +24,8 @@ public class PeopleServiceImpl implements PeopleService {
 
 	@Override
 	public Person getPerson(final Long id) {
-		return null;
+		return repository.findById(id)
+				.orElseThrow(() -> new PersonNotFoundException(Messages.getString("error_not_found", id)));
 	}
 
 	@Override
