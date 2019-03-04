@@ -30,14 +30,12 @@ public class PeopleServiceImpl implements PeopleService {
 
 	@Override
 	public Person setPerson(final Person person) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.saveAndFlush(person);
 	}
 
 	@Override
 	public void removePerson(final Long id) {
-		// TODO Auto-generated method stub
-
+		repository.deleteById(id);
 	}
 
 }
