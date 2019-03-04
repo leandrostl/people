@@ -1,7 +1,6 @@
 package application.service;
 
 import static java.util.Optional.of;
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -14,26 +13,24 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import application.Main;
 import application.Messages;
 import application.domain.Person;
 import application.repository.PeopleRepository;
 import application.service.exception.PersonNotFoundException;
+import application.service.implementation.PeopleServiceImpl;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = Main.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class PeopleServiceTest {
 
-	@MockBean
+	@Mock
 	private PeopleRepository repository;
 
 	@InjectMocks
-	private PeopleService service;
+	private final PeopleService service = new PeopleServiceImpl();
 
 	@Rule
 	public ExpectedException expectedEx = ExpectedException.none();
@@ -46,7 +43,7 @@ public class PeopleServiceTest {
 				Person.builder().id(2L).name("P3").city("São Paulo").state("São Paulo").build(),
 				Person.builder().id(3L).name("P4").city("Salvador").state("Bahia").build());
 		Mockito.when(repository.findAll()).thenReturn(people);
-		assertThat(service.getPeople(), contains(people));
+		org.junit.Assert.assertThat(service.getPeople(), equalTo(people));
 	}
 
 	@Test
