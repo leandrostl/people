@@ -1,0 +1,15 @@
+.appContainer {
+    display: flex; 
+    flex-flow:column; 
+    align-items: center;
+    justify-content: center;
+}
+.actionButton {
+    margin:1px; 
+    width: 45px;
+}
+
+.table td, th {
+    text-align: center;   
+ }
+

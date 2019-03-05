@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Hello AngularJS</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="./js/people.js"></script>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+
+<body>
+	<div ng-app="App" ng-controller="PeopleCtrl" class="container-fluid appContainer">
+		<h1>People</h1>
+		<span style="height:30px"></span>
+		<table class="table table-striped table-hover">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col" ng-repeat="header in headers" width="{{header.width}}">{{header.label}}</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tr>
+				<form>
+					<td width="{{headers[0].width}}">
+						<input type="text" class="form-control" disabled>
+					</td>
+					<td ng-repeat="header in headers | limitTo : 8 : 1" width="{{header.width}}">
+						<input type="text" class="form-control" id="{{header.name}}" placeholder="{{header.label}}">
+					</td>
+					<td width="100px">
+						<button type="submit" class="btn btn-success actionButton"><i class="fas fa-check"></i></button>
+					</td>
+				</form>
+			</tr>
+			<tr ng-repeat="person in people">
+				<th scope="row">{{ person.id }}</th>
+				<td>{{ person.name }}</td>
+				<td>{{ person.street }}</td>
+				<td>{{ person.number }}</td>
+				<td>{{ person.neighborhood }}</td>
+				<td>{{ person.city }}</td>
+				<td>{{ person.state }}</td>
+				<td>{{ person.cellphone }}</td>
+				<td>{{ person.phone }}</td>
+				<td>
+					<button type="button" class="btn btn-primary actionButton">
+						<i class="fas fa-edit"></i></button>
+					<button type="button" class="btn btn-danger actionButton">
+						<i class="fas fa-trash-alt"></i></button>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+
+</html>
