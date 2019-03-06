@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Hello AngularJS</title>
+	<title>People Catalog</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script src="./js/people.js"></script>
 
@@ -28,10 +28,12 @@
 						<input type="text" class="form-control" disabled>
 					</td>
 					<td ng-repeat="header in headers | limitTo : 8 : 1" width="{{header.width}}">
-						<input type="text" class="form-control" id="{{header.name}}" placeholder="{{header.label}}">
+						<input type="{{header.type}}" class="form-control" id="{{header.name}}"
+							placeholder="{{header.label}}" ng-model="header.value">
 					</td>
 					<td width="100px">
-						<button type="submit" class="btn btn-success actionButton"><i class="fas fa-check"></i></button>
+						<button title="Add this person" type="submit" class="btn btn-success actionButton" ng-click="save(headers)" ><i
+								class="fas fa-check"></i></button>
 					</td>
 				</form>
 			</tr>
@@ -46,14 +48,12 @@
 				<td>{{ person.cellphone }}</td>
 				<td>{{ person.phone }}</td>
 				<td>
-					<button type="button" class="btn btn-primary actionButton">
-						<i class="fas fa-edit"></i></button>
-					<button type="button" class="btn btn-danger actionButton">
+					<button title="Remove this person" type="button" class="btn btn-danger actionButton" ng-click="remove(person.id)">
 						<i class="fas fa-trash-alt"></i></button>
 				</td>
 			</tr>
 		</table>
-	</div>
+
 
 </body>
 
