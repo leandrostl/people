@@ -5,7 +5,7 @@ Essa aplicação permite inserir dados de pessoas e recuperar essa informação 
 ### Execução
 A aplicação pode clonada desse repositório. 
 
-Banco de dados, o projeto utilizou o banco (PostgreSql)[http://www.postgresql.org/] para persistir os dados. Dessa forma é necessário instalar esse banco de dados e criar o usuário **people** com senha **postgres**.
+Banco de dados, o projeto utilizou o banco [PostgreSql](http://www.postgresql.org/) para persistir os dados. Dessa forma é necessário instalar esse banco de dados e criar o usuário **people** com senha **postgres**.
 
 A aplicação está configurada para ao iniciar criar as tabelas no banco de dados e ao finalizar a sessão, apagar esses dados.
 
